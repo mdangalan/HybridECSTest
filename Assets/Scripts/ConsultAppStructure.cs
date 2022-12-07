@@ -12,17 +12,22 @@ namespace KneeSystems
         public GameObject floor;
         public List<Selectable> selectables;
         public List<CubeObject> cubeObjects;
+        public List<SphereObject> sphereObjects;
         public Selectable selectedObject;
 
         //holders
         public GameObject cubeHolder;
+        internal GameObject sphereHolder;
 
         public ConsultAppStructure()
         {
             cubeHolder = null;
+            sphereHolder = null;
             floor = null;
             selectables = new List<Selectable>();
             cubeObjects = new List<CubeObject>();
+            sphereObjects = new List<SphereObject>();
+
         }
     }
 
@@ -39,6 +44,22 @@ namespace KneeSystems
             if (parent != null)
                 cube.entity.core.gameObject.transform.SetParent(parent);
                 
+            return cube;
+        }
+    }
+
+    public class SphereObject : BaseComponent
+    {
+        public static SphereObject Create(Transform parent = null)
+        {
+            BaseEntity baseEntity = BaseEntity.Create();
+            SphereObject cube = baseEntity.AddComponent<SphereObject>();
+            cube.entity.AddComponent<Selectable>();
+            cube.entity.core.gameObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+            if (parent != null)
+                cube.entity.core.gameObject.transform.SetParent(parent);
+
             return cube;
         }
     }

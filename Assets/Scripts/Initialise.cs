@@ -21,6 +21,7 @@ namespace KneeSystems
 
             //Create Holders
             _structure.cubeHolder = new GameObject("Cubes");
+            _structure.sphereHolder = new GameObject("Spheres");
         }
       
         Camera CreateCamera(string name)
